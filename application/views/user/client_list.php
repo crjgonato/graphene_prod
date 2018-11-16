@@ -23,9 +23,9 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
     <div class="box box-block bg-white animated fadeInUp">
     
       <h2><strong>Add</strong> Client Visit 
-        <div class="add-record-btn">
+        <!-- <div class="add-record-btn">
         <button class="btn btn-sm btn-primary pull-right" type="button" onclick="getLocation()"> My Location</button>
-        </div>
+        </div> -->
       </h2>
       <form class="m-b-1" method="post" name="add_visit" action="<?php echo site_url("client/client_insert") ?>">
       <input type="hidden" name="added_by" value="<?php echo $user_info[0]->first_name; ?> <?php echo $user_info[0]->last_name; ?>">
@@ -38,8 +38,8 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
             <div id="mapholder"></div>
           </div>
         </div>
-        <div><input type="text" name="created_at" id="lat" value=""></div>
-        <div><input type="text" name="created_at" id="lon" value=""></div> 
+        <!-- <div><input type="text" name="created_at" id="lat" value=""></div>
+        <div><input type="text" name="created_at" id="lon" value=""></div>  -->
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
@@ -87,11 +87,11 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
       <h2><strong>List All</strong> Client Visit</h2>
       <div class="table-responsive" data-pattern="priority-columns">
         <table class="table table-condensed table-hover table-bordered dataTable" id="clientdata" style="width:100%;">
-          <thead>
+        <thead>
             <tr>
               <th>Action</th>
               <th>Name</th>
-              <!-- <th>Contact</th> -->
+              <th>Address</th>
               <th>Time</th>
               <th>Date</th>
               <th>Visit by</th>
@@ -100,7 +100,9 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
           <?php foreach($data as $client){?>
             <tr>
               <td>-</td>
+             
               <td><?php echo $client->client_name;?></td>
+              <td><?php echo $client->address;?></td>
               <!-- <td><?php echo $client->client_contactperson;?></td> -->
               <td><?php echo $client->time;?></td>
               <td><?php echo $client->date;?></td>
@@ -135,11 +137,11 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
       mapholder.style.height='190px';
       mapholder.style.width='100%';
 
-      lat.text = lati.value;
-      lon.text = long.value;
+      // lat.value = lati.value;
+      // lon.value = long.value;
     
-    console.log(lat);
-    console.log(lon);
+    console.log(lat,lon);
+    //console.log(lon);
     // console.log(latlon);
 
     var myOptions={
@@ -172,5 +174,5 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
 </script>
 
 <script async defer
-src="https://maps.google.com/maps/api/js?key=AIzaSyCkSvb25TkFuWzkMBusgV11Wjwxe3sft6A">
+src="https://maps.google.com/maps/api/js?key=AIzaSyB_OEQvU6BsM2l10T2beT_V06sowMHR70s&callback=getLocation">
 </script>
