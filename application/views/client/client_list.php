@@ -33,13 +33,9 @@
         <button class="btn btn-sm btn-primary pull-right" id="submit" title="Search address on map" type="submit">Verify Location</button>
         </div>
       </h2>
-      <!-- <form class="m-b-1" method="post" name="add_visit" action="<?php echo site_url("client/client_insert") ?>">
-      </form> -->
-      <div id="floating-panel">
-      <!-- <input id="spnText" class="form-control" type="text"> -->
-      <!-- <input id="submit" type="button" value="Verify Location"> -->
+      <!-- <div id="floating-panel">
       <span id="spnText"></span>
-    </div>
+    </div> -->
     <div id="map"></div>
     <script>
       function initMap() {

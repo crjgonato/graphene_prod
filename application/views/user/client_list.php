@@ -51,8 +51,6 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
             <div id="mapholder"></div>
           </div>
         </div>
-        <!-- <div><input type="text" name="created_at" id="lat" value=""></div>
-        <div><input type="text" name="created_at" id="lon" value=""></div>  -->
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
@@ -131,12 +129,7 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
   </div>
 </div>
 <script>
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
       var map, infoWindow;
-      
       function initMap() {
         map = new google.maps.Map(document.getElementById('mapholder'), {
           center: {lat: -34.397, lng: 150.644},
@@ -153,23 +146,13 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
           navigator.geolocation.getCurrentPosition(function(position) {
             var lat = document.getElementById("lati");
             var long = document.getElementById("longg");
-
             var pos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
-
-              
             };
             lat.value = pos.lat;
             long.value = pos.lng;
-            
-            console.log(pos);
-
-            
-            //var address = $('#address');
-            
-            
-
+            //console.log(pos);
             infoWindow.setPosition(pos);            
             infoWindow.setContent('You are here.');
             infoWindow.open(map);

@@ -53,63 +53,6 @@ class Client extends MY_Controller {
 			redirect('dashboard/');
 		}		  
 	}
-	// Validate and add info in database
-	// function add_visit() {
-		
-	// 	if($this->input->post('add_visit')=='client') {		
-	// 	/* Define return | here result is used to return user data and error for error message */
-	// 	$Return = array('result'=>'', 'error'=>'');
-			
-	// 	/* Server side PHP input validation */
-	// 	$client_name = $this->input->post('client_name');
-	// 	$client_contactperson = $this->input->post('client_contactperson');
-	// 	$time = $this->input->post('time');
-	// 	$date = $this->input->post('date');
-	// 	$meeting_details = $this->input->post('meeting_details');
-	// 	$added_by = $this->input->post('added_by');
-
-	// 	// $qt_description = htmlspecialchars(addslashes($description), ENT_QUOTES);
-		
-	// 	// if($this->input->post('employee_id')==='') {
-	// 	// 				$Return['error'] = "The complaint from field is required.";
-	// 	// } else if($this->input->post('title')==='') {
-	// 	// 	$Return['error'] = "The complaint title field is required.";
-	// 	// } else if($this->input->post('complaint_date')==='') {
-	// 	// 	 $Return['error'] = "The complaint date field is required.";
-	// 	// } else if(empty($this->input->post('complaint_against'))) {
-	// 	// 	 $Return['error'] = "The complaint against field is required.";
-	// 	// }
-				
-	// 	if($Return['error']!=''){
-	// 				$this->output($Return);
-	// 	}
-	// 	//$complaint_against_ids = implode(',',$this->input->post('complaint_against'));
-
-	// 	$data = array(
-	// 	'client_name' => $this->input->post('client_name'),
-	// 	'client_contactperson' => $this->input->post('client_contactperson'),
-	// 	'time' => $this->input->post('time'),
-	// 	'date' => $this->input->post('date'),
-	// 	'meeting_details' => $this->input->post('meeting_details'),
-	// 	'added_by' => $this->input->post('added_by'),
-	// 	'created_at' => date('d-m-Y'),
-		
-	// 	);
-
-	// 	$result = $this->Client_model->add($data);
-	// 	//console.log($result);
-	// 	if ($result == TRUE) {
-	// 		$Return['result'] = 'Visit added.';
-	// 	} else {
-	// 		$Return['error'] = 'opps. Something went wrong, please try again.';
-	// 	}
-	// //	$this->output($Return);
-	// 	//exit;
-
-	// 	redirect("user/client_list");  
-	// 	}
-	// }
-
 	function client_insert(){
 		$latitude=$this->input->post('latitude');
 		$longitude=$this->input->post('longitude');
