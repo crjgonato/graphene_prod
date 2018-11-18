@@ -1,15 +1,22 @@
 <style>
   /* Set the size of the div element that contains the map */
   #map {
-    height: 360px;  /* The height is 400 pixels */
+    height: 410px;  /* The height is 400 pixels */
     width: 100%;  /* The width is the width of the web page */
   }
   .highlight {
     background-color: #f5f5f5;
     color: black;
-}
-      
-    
+  }
+  a[href^="http://maps.google.com/maps"]{display:none !important}
+  a[href^="https://maps.google.com/maps"]{display:none !important}
+
+  .gmnoprint a, .gmnoprint span, .gm-style-cc {
+      display:none;
+  }
+  .gmnoprint div {
+      background:none !important;
+  }
 </style>
 <?php
 /* Client Visits view
@@ -41,6 +48,7 @@
           center: {lat: 10.2931193, lng: 123.8774813} ,
           mapTypeControl:false,
           disableDefaultUI: true,
+          draggable : false,
           mapTypeId:google.maps.MapTypeId.ROADMAP,
           navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
         });

@@ -1,12 +1,21 @@
 <style>
        /* Set the size of the div element that contains the map */
       #mapholder {
-        height: 150px;  /* The height is 400 pixels */
+        height: 120px;  /* The height is 400 pixels */
         width: 100%;  /* The width is the width of the web page */
         /* background-color: whitesmoke; */
         margin-bottom: 15px;
         margin-top: -15px;
        }
+       a[href^="http://maps.google.com/maps"]{display:none !important}
+       a[href^="https://maps.google.com/maps"]{display:none !important}
+
+      .gmnoprint a, .gmnoprint span, .gm-style-cc {
+          display:none;
+      }
+      .gmnoprint div {
+          background:none !important;
+      }
 </style>
 <?php
 /* Client Visits view
@@ -151,6 +160,7 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
       mapTypeId:google.maps.MapTypeId.ROADMAP,
       mapTypeControl:false,
       disableDefaultUI: true,
+      draggable : false,
       navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
     };
     var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
