@@ -21,31 +21,33 @@
     <div class="box box-block bg-white animated fadeInUp">
     
       <h2><strong>Location</strong> Checker 
-        <!-- <div class="add-record-btn">
-        <button class="btn btn-sm btn-primary pull-right" type="button" onclick="getLocation()"> My Location</button>
-        </div> -->
+        <div class="add-record-btn">
+        <a class="nav-link" style="cursor: pointer;" onclick="initMap()" title="Refresh map"> <i class="fa fa-redo-alt"></i> </a>&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-sm btn-primary pull-right" id="submit" title="Search address on map" type="submit">Verify Location</button>
+        </div>
       </h2>
       <!-- <form class="m-b-1" method="post" name="add_visit" action="<?php echo site_url("client/client_insert") ?>">
       </form> -->
       <div id="floating-panel">
-      <input id="spnText" class="form-control" type="hidden">
-      <!-- <input id="submit" type="button" value="Check"> -->
-      <!-- <br/><span id="spnText"></span> -->
+      <!-- <input id="spnText" class="form-control" type="text"> -->
+      <!-- <input id="submit" type="button" value="Verify Location"> -->
+      <span id="spnText"></span>
     </div>
     <div id="map"></div>
     <script>
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
+          zoom: 11,
           center: {lat: 10.2931193, lng: 123.8774813} ,
           mapTypeControl:false,
+          disableDefaultUI: true,
           mapTypeId:google.maps.MapTypeId.ROADMAP,
           navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
         });
         var geocoder = new google.maps.Geocoder;
         var infowindow = new google.maps.InfoWindow;
 
-        document.getElementById('getaddress').addEventListener('click', function() {
+        document.getElementById('submit').addEventListener('click', function() {
           geocodeLatLng(geocoder, map, infowindow);
         });
       }
@@ -97,12 +99,12 @@
             <tr>
               <td>-</td>
              
-              <td><?php echo $client->client_name;?></td>
+              <td readonly><?php echo $client->client_name;?></td>
               <td id="getaddress"><?php echo $client->address;?></td>
               <!-- <td><?php echo $client->client_contactperson;?></td> -->
-              <td><?php echo $client->time;?></td>
-              <td><?php echo $client->date;?></td>
-              <td><?php echo $client->added_by;?></td>
+              <td readonly><?php echo $client->time;?></td>
+              <td readonly><?php echo $client->date;?></td>
+              <td readonly><?php echo $client->added_by;?></td>
             </tr>     
           <?php }?> 
     </table>
@@ -115,11 +117,11 @@
 <script>
 $(document).ready(function() {
   //alert("asasd");
-  $("#clientdata tr:has(td)").mouseover(function(e) {
+  $("#clientdata #getaddress").mouseover(function(e) {
     $(this).css("cursor", "pointer");
   });
-  $("#clientdata tr:has(td)").click(function(e) {
-    $("#clientdata td").removeClass("highlight");
+  $("#clientdata #getaddress").click(function(e) {
+    $("#clientdata #getaddress").removeClass("highlight");
     var clickedCell = $(e.target).closest("td");
     clickedCell.addClass("highlight");
     $("#spnText").val(clickedCell.text());

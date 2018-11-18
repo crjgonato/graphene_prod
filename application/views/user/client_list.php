@@ -1,10 +1,11 @@
 <style>
        /* Set the size of the div element that contains the map */
       #mapholder {
-        height: 190px;  /* The height is 400 pixels */
+        height: 150px;  /* The height is 400 pixels */
         width: 100%;  /* The width is the width of the web page */
         /* background-color: whitesmoke; */
         margin-bottom: 15px;
+        margin-top: -15px;
        }
 </style>
 <?php
@@ -23,9 +24,9 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
     <div class="box box-block bg-white animated fadeInUp">
     
       <h2><strong>Add</strong> Client Visit 
-        <!-- <div class="add-record-btn">
-        <button class="btn btn-sm btn-primary pull-right" type="button" onclick="getLocation()"> My Location</button>
-        </div> -->
+        <div class="add-record-btn">
+        <a class="nav-link" style="cursor: pointer;" onclick="getLocation()" title="Refresh map"> <i class="fa fa-redo-alt"></i> </a>&nbsp;&nbsp;&nbsp;
+        </div>
       </h2>
       <form class="m-b-1" method="post" name="add_visit" action="<?php echo site_url("client/client_insert") ?>">
       <input type="hidden" name="added_by" value="<?php echo $user_info[0]->first_name; ?> <?php echo $user_info[0]->last_name; ?>">
@@ -101,12 +102,12 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
             <tr>
               <td>-</td>
              
-              <td><?php echo $client->client_name;?></td>
+              <td readonly><?php echo $client->client_name;?></td>
               <td><?php echo $client->address;?></td>
               <!-- <td><?php echo $client->client_contactperson;?></td> -->
-              <td><?php echo $client->time;?></td>
-              <td><?php echo $client->date;?></td>
-              <td><?php echo $client->added_by;?></td>
+              <td readonly><?php echo $client->time;?></td>
+              <td readonly><?php echo $client->date;?></td>
+              <td readonly><?php echo $client->added_by;?></td>
             </tr>     
           <?php }?> 
     </table>
@@ -134,8 +135,8 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
     var long = document.getElementById("lon");
     var latlon=new google.maps.LatLng(lat, lon)
     var mapholder=document.getElementById('mapholder')
-      mapholder.style.height='190px';
-      mapholder.style.width='100%';
+      // mapholder.style.height='140px';
+      // mapholder.style.width='100%';
 
       // lat.value = lati.value;
       // lon.value = long.value;
@@ -145,9 +146,11 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
     // console.log(latlon);
 
     var myOptions={
-      center:latlon,zoom:17,
+      center:latlon,
+      zoom:18,
       mapTypeId:google.maps.MapTypeId.ROADMAP,
       mapTypeControl:false,
+      disableDefaultUI: true,
       navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
     };
     var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
