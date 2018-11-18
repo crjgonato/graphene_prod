@@ -97,7 +97,7 @@
             <tr>
               <th>Action</th>
               <th>Name</th>
-              <th>Address</th>
+              <th>Geolocation</th>
               <th>Time</th>
               <th>Date</th>
               <th>Visit by</th>
@@ -108,7 +108,7 @@
               <td>-</td>
              
               <td readonly><?php echo $client->client_name;?></td>
-              <td id="getaddress"><?php echo $client->address;?></td>
+              <td id="getaddress"><?php echo $client->latitude;?>,<?php echo $client->longitude;?></td>
               <!-- <td><?php echo $client->client_contactperson;?></td> -->
               <td readonly><?php echo $client->time;?></td>
               <td readonly><?php echo $client->date;?></td>

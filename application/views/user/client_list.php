@@ -1,7 +1,7 @@
 <style>
        /* Set the size of the div element that contains the map */
       #mapholder {
-        height: 120px;  /* The height is 400 pixels */
+        height: 150px;  /* The height is 400 pixels */
         width: 100%;  /* The width is the width of the web page */
         /* background-color: whitesmoke; */
         margin-bottom: 15px;
@@ -34,14 +34,17 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
     
       <h2><strong>Add</strong> Client Visit 
         <div class="add-record-btn">
-        <a class="nav-link" style="cursor: pointer;" onclick="getLocation()" title="Refresh map"> <i class="fa fa-redo-alt"></i> </a>&nbsp;&nbsp;&nbsp;
+        <a class="nav-link" style="cursor: pointer;" onclick="initMap()" title="Refresh map"> <i class="fa fa-redo-alt"></i> </a>&nbsp;&nbsp;&nbsp;
         </div>
       </h2>
       <form class="m-b-1" method="post" name="add_visit" action="<?php echo site_url("client/client_insert") ?>">
       <input type="hidden" name="added_by" value="<?php echo $user_info[0]->first_name; ?> <?php echo $user_info[0]->last_name; ?>">
       <input type="hidden" name="created_at" value="<?php echo date('Y-m-d'); ?>">
 
-      <!-- <input type="hidden" name="address" value="<?php echo $latlon; ?>"> -->
+      <input type="hidden" class="form-control" name="latitude" id="lati" >
+      <input type="hidden" class="form-control" name="longitude" id="longg">
+      <!-- <span id="address"></span> -->
+      <br>
         <div class="row">
           <div class="col-md-12">
           <br>
@@ -101,7 +104,8 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
             <tr>
               <th>Action</th>
               <th>Name</th>
-              <th>Address</th>
+              <th>Geolocation</th>
+              <!-- <th>Longitude</th> -->
               <th>Time</th>
               <th>Date</th>
               <th>Visit by</th>
@@ -112,7 +116,8 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
               <td>-</td>
              
               <td readonly><?php echo $client->client_name;?></td>
-              <td><?php echo $client->address;?></td>
+              <td><?php echo $client->latitude;?>,<?php echo $client->longitude;?></td>
+              <!-- <td><?php echo $client->longitude;?></td> -->
               <!-- <td><?php echo $client->client_contactperson;?></td> -->
               <td readonly><?php echo $client->time;?></td>
               <td readonly><?php echo $client->date;?></td>
@@ -125,67 +130,69 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
     </div>
   </div>
 </div>
-
 <script>
-  var x=document.getElementById("map");
-  var lati = document.getElementById("lat");
-  var long = document.getElementById("lon");
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition,showError);
-    }
-    else{x.innerHTML="Geolocation is not supported by this browser.";}
-  }
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      var map, infoWindow;
+      
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('mapholder'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 18,
+          mapTypeControl:false,
+          disableDefaultUI: true,
+          draggable : false
+        });
 
-  function showPosition(position) {
-    var lat=position.coords.latitude;
-    var lon=position.coords.longitude;
-    var lati = document.getElementById("lat");
-    var long = document.getElementById("lon");
-    var latlon=new google.maps.LatLng(lat, lon)
-    var mapholder=document.getElementById('mapholder')
-      // mapholder.style.height='140px';
-      // mapholder.style.width='100%';
+        infoWindow = new google.maps.InfoWindow;
 
-      // lat.value = lati.value;
-      // lon.value = long.value;
-    
-    console.log(lat,lon);
-    //console.log(lon);
-    // console.log(latlon);
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var lat = document.getElementById("lati");
+            var long = document.getElementById("longg");
 
-    var myOptions={
-      center:latlon,
-      zoom:18,
-      mapTypeId:google.maps.MapTypeId.ROADMAP,
-      mapTypeControl:false,
-      disableDefaultUI: true,
-      draggable : false,
-      navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
-    };
-    var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
-    var marker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
-  }
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
 
-  function showError(error) {
-    switch(error.code) 
-      {
-      case error.PERMISSION_DENIED:
-        x.innerHTML="<b>User denied the request for Geolocation.</b>"
-        break;
-      case error.POSITION_UNAVAILABLE:
-        x.innerHTML="<b>Location information is unavailable.</b>"
-        break;
-      case error.TIMEOUT:
-        x.innerHTML="<b>The request to get user location timed out.</b>"
-        break;
-      case error.UNKNOWN_ERROR:
-        x.innerHTML="<b>An unknown error occurred.</b>"
-        break;
+              
+            };
+            lat.value = pos.lat;
+            long.value = pos.lng;
+            
+            console.log(pos);
+
+            
+            //var address = $('#address');
+            
+            
+
+            infoWindow.setPosition(pos);            
+            infoWindow.setContent('You are here.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
       }
-  }
-</script>
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failedasdasdasdasdasdasdadasdasd.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+    </script>
 
 <script async defer
-src="https://maps.google.com/maps/api/js?key=AIzaSyB_OEQvU6BsM2l10T2beT_V06sowMHR70s&callback=getLocation">
+src="https://maps.google.com/maps/api/js?key=AIzaSyB_OEQvU6BsM2l10T2beT_V06sowMHR70s&callback=initMap">
 </script>

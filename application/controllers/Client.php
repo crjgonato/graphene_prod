@@ -111,7 +111,8 @@ class Client extends MY_Controller {
 	// }
 
 	function client_insert(){
-		//$address=$this->input->post('address');
+		$latitude=$this->input->post('latitude');
+		$longitude=$this->input->post('longitude');
 		$client_name=$this->input->post('client_name');
 		$client_contactperson=$this->input->post('client_contactperson');
 		$time=$this->input->post('time');
@@ -121,7 +122,8 @@ class Client extends MY_Controller {
 		$created_at=$this->input->post('created_at');
 
     $data = array(
-				//'address'=>$address,
+				'latitude'=>$latitude,
+				'longitude'=>$longitude,
 				'client_name'=>$client_name,
 				'client_contactperson'=>$client_contactperson,
 				'time'=>$time,

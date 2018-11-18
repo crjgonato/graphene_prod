@@ -17,7 +17,7 @@ date_default_timezone_set('Asia/Manila');
 | environments.
 |
 */
-//$config['base_url'] = 'http://192.168.137.1/graphene/';
+//$config['base_url'] = 'http://192.168.1.138/graphene/';
 $config['base_url'] = 'http://localhost/graphene/';
 
 /*
