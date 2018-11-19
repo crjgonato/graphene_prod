@@ -15,7 +15,7 @@ $role_resources_ids = explode(',',$role_user[0]->role_resources);
 			//// if(in_array($_menu['md'],$role_resources_ids)) {
 	    ?>
 
-      <?php if($user_info[0]->user_role_id=='1' || $user_info[0]->user_role_id=='3' || $user_info[0]->user_role_id=='10'){?>
+      <?php if($user_info[0]->user_role_id=='1' || $user_info[0]->user_role_id=='3' || $user_info[0]->user_role_id=='10' || $user_info[0]->user_role_id=='11'){?>
       <li class="menu-title">Human Resource Menu</li>
       <li> <a href="<?php echo site_url('dashboard');?>" class="waves-effect waves-light"> <span class="s-icon"><i class="fas fa-home"></i></span> <span class="s-text">Home</span> </a> </li>
       <?php } ?>
@@ -130,7 +130,7 @@ $role_resources_ids = explode(',',$role_user[0]->role_resources);
         </ul>
       </li>
       <?php } ?>
-      <?php if($user_info[0]->user_role_id=='1' || $user_info[0]->user_role_id=='3' || $user_info[0]->user_role_id=='10'){?>
+      <?php if($user_info[0]->user_role_id=='1' || $user_info[0]->user_role_id=='3' || $user_info[0]->user_role_id=='10' || $user_info[0]->user_role_id=='11'){?>
       <li class="menu-title">Payroll Menu</li>
         <?php if(in_array('36',$role_resources_ids) || in_array('38',$role_resources_ids) || in_array('39',$role_resources_ids) || in_array('40',$role_resources_ids) || in_array('41',$role_resources_ids) || in_array('42',$role_resources_ids)){?>
           <li class="with-sub">
