@@ -18,9 +18,9 @@ class Project extends MY_Controller {
 		$this->load->library('form_validation');
 		//load the model
 		$this->load->model("Project_model");
-		//$this->load->model("Graphene_model");
-		//$this->load->model("Company_model");
-		//$this->load->model("Designation_model");
+		$this->load->model("Graphene_model");
+		$this->load->model("Company_model");
+		$this->load->model("Designation_model");
 	}
 	
 	/*Function to set JSON output*/

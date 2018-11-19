@@ -29,8 +29,6 @@ if($user_info[0]->user_role_id==1) {
     <div class="navbar-left"> 
       <a class="navbar-brand" href="<?php echo site_url();?>dashboard/"> 
       <!--Graphene SME-->
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <!-- <span class="logo-mini"><b>STKS</b></span> -->
         <div class="logo"></div>
       </a>
       <div class="toggle-button <?php echo $cl_skin;?> sidebar-toggle-first float-xs-left hidden-md-up" data-toggle-tooltip="tooltip" data-placement="bottom" data-title="" data-original-title="" title=""> <span class="hamburger"></span> </div>

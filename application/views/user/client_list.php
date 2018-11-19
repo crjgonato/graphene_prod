@@ -55,7 +55,7 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
           <div class="col-md-12">
             <div class="form-group">
               <label for="client_name">Client Name</label>
-              <input class="form-control" placeholder="" name="client_name" type="text">
+              <input class="form-control form-control-lg" placeholder="" name="client_name" type="text">
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
           <div class="col-md-12">
             <div class="form-group">
               <label for="client_name">Contact Person</label>
-              <input class="form-control" placeholder="" name="client_contactperson" type="text">
+              <input class="form-control form-control-lg" placeholder="" name="client_contactperson" type="text">
             </div>
           </div>
         </div>
@@ -71,13 +71,13 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
           <div class="col-md-6">
             <div class="form-group">
               <label for="start_date"> Time</label>
-              <input class="form-control" placeholder="_" readonly name="time" value="<?php echo date('g:i a'); ?>" type="text">
+              <input class="form-control form-control-lg" placeholder="_" readonly name="time" value="<?php echo date('g:i a'); ?>" type="text">
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="end_date"> Date </label>
-              <input class="form-control date" placeholder="_" readonly name="date" value="<?php echo date('Y-m-d'); ?>" type="text">
+              <input class="form-control date form-control-lg" placeholder="_" readonly name="date" value="<?php echo date('Y-m-d'); ?>" type="text">
             </div>
           </div>
         </div>
@@ -85,11 +85,11 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
           <div class="col-md-12">
             <div class="form-group">
               <label for="description">Meeting Details</label>
-              <textarea class="form-control textarea" placeholder="" name="meeting_details" cols="30" rows="5"></textarea>
+              <textarea class="form-control textarea form-control-lg" placeholder="" name="meeting_details" cols="30" rows="5"></textarea>
               </div>
           </div>
         </div>
-        <button type="submit" name="submit" class="btn btn-primary save" >Save</button>
+        <button type="submit" name="submit" class="btn btn-primary btn-lg save" >Save</button>
       </form>
     </div>
   </div>

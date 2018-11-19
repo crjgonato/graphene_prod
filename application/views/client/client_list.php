@@ -33,9 +33,9 @@
         <button class="btn btn-sm btn-primary pull-right" id="submit" title="Search address on map" type="submit">Verify Location</button>
         </div>
       </h2>
-      <!-- <div id="floating-panel">
+      <div id="floating-panel">
       <span id="spnText"></span>
-    </div> -->
+    </div>
     <div id="map"></div>
     <script>
       function initMap() {
