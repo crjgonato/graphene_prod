@@ -10,6 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="<?php echo $favicon;?>" >
+    <meta name="mobile-web-app-capable" content="yes">
 
     <!-- Title -->
     <title><?php echo $title;?></title>

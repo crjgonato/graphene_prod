@@ -91,8 +91,9 @@
         <table class="table table-condensed table-hover table-bordered dataTable" id="clientdata" style="width:100%;">
           <thead>
             <tr>
-              <th>Action</th>
-              <th>Name</th>
+              <!--<th>Action</th>-->
+              <th>Client</th>
+              <th>Contact Person</th>
               <th>Geolocation</th>
               <th>Time</th>
               <th>Date</th>
@@ -101,11 +102,10 @@
           </thead>
           <?php foreach($data as $client){?>
             <tr>
-              <td>-</td>
-             
+              <!--<td>-</td>-->
               <td readonly><?php echo $client->client_name;?></td>
+              <td><?php echo $client->client_contactperson;?></td>
               <td id="getaddress"><?php echo $client->latitude;?>,<?php echo $client->longitude;?></td>
-              <!-- <td><?php echo $client->client_contactperson;?></td> -->
               <td readonly><?php echo $client->time;?></td>
               <td readonly><?php echo $client->date;?></td>
               <td readonly><?php echo $client->added_by;?></td>
