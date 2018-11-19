@@ -179,7 +179,7 @@ $role_resources_ids = explode(',',$role_user[0]->role_resources);
         <?php } ?>
         <li class="menu-title">Extras</li>
 
-      <?php if(in_array('33',$role_resources_ids)) { ?>
+      <?php if(in_array('7',$role_resources_ids)) { ?>
         <li>
           <a href="<?php echo site_url('client');?>" class="waves-effect waves-light"> 
             <span class="s-icon"><i class="fas fa-users"></i></span> 
