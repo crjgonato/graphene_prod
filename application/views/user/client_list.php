@@ -135,7 +135,7 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
           zoom: 18,
           mapTypeControl:false,
           disableDefaultUI: true,
-          draggable : false
+          draggable : true
         });
 
         infoWindow = new google.maps.InfoWindow;
@@ -151,7 +151,7 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
             };
             lat.value = pos.lat;
             long.value = pos.lng;
-            //console.log(pos);
+            console.log(pos);
             infoWindow.setPosition(pos);            
             infoWindow.setContent('You are here.');
             infoWindow.open(map);
@@ -169,7 +169,7 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failedasdasdasdasdasdasdadasdasd.' :
+                              'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
       }

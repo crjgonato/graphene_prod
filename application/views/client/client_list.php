@@ -30,7 +30,7 @@
       <h2><strong>Location</strong> Checker 
         <div class="add-record-btn">
         <a class="nav-link" style="cursor: pointer;" onclick="initMap()" title="Refresh map"> <i class="fa fa-redo-alt"></i> </a>&nbsp;&nbsp;&nbsp;
-        <button class="btn btn-sm btn-primary pull-right" id="submit" title="Search address on map" type="submit">Verify Location</button>
+        <button class="btn btn-sm btn-primary pull-right" id="submit" title="Search address on map" type="submit" disabled>Verify Location</button>
         </div>
       </h2>
       <div id="floating-panel">
@@ -44,7 +44,7 @@
           center: {lat: 10.2931193, lng: 123.8774813} ,
           mapTypeControl:false,
           disableDefaultUI: true,
-          draggable : false,
+          draggable : true,
           mapTypeId:google.maps.MapTypeId.ROADMAP,
           navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
         });
@@ -74,7 +74,8 @@
               window.alert('No results found');
             }
           } else {
-            window.alert('Geocoder failed due to: ' + status);
+            //window.alert('Geocoder failed due to: ' + status);
+            window.alert('Geocoder failed to load');
           }
         });
       }
@@ -127,6 +128,7 @@ $(document).ready(function() {
   $("#clientdata #getaddress").click(function(e) {
     $("#clientdata #getaddress").removeClass("highlight");
     var clickedCell = $(e.target).closest("td");
+    $("#submit").prop("disabled",false);
     clickedCell.addClass("highlight");
     $("#spnText").val(clickedCell.text());
   });
