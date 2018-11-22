@@ -1026,21 +1026,21 @@ class Timesheet extends MY_Controller {
 			}
 				
 			if($office_shift[0]->monday_in_time == '' && $day == 'Monday') {
-				$status = 'Rest Day';	
+				$status = 'Holiday';	
 			} else if($office_shift[0]->tuesday_in_time == '' && $day == 'Tuesday') {
-				$status = 'Rest Day';	
+				$status = 'Holiday';	
 			} else if($office_shift[0]->wednesday_in_time == '' && $day == 'Wednesday') {
-				$status = 'Rest Day';	
+				$status = 'Holiday';	
 			} else if($office_shift[0]->thursday_in_time == '' && $day == 'Thursday') {
-				$status = 'Rest Day';	
+				$status = 'Holiday';	
 			} else if($office_shift[0]->friday_in_time == '' && $day == 'Friday') {
-				$status = 'Rest Day';	
+				$status = 'Holiday';	
 			} else if($office_shift[0]->saturday_in_time == '' && $day == 'Saturday') {
-				$status = 'Rest Day';	
+				$status = 'Holiday';	
 			} else if($office_shift[0]->sunday_in_time == '' && $day == 'Sunday') {
-				$status = 'Rest Day';	
+				$status = 'Holiday';	
 			} else if(in_array($attendance_date,$holiday_arr)) { // holiday
-				$status = 'Rest Day';
+				$status = 'Holiday';
 			} else if(in_array($attendance_date,$leave_arr)) { // on leave
 				$status = 'On Leave';
 			} 

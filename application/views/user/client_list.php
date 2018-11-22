@@ -131,8 +131,8 @@ $user_info = $this->Graphene_model->read_user_info($session['user_id']);
       var map, infoWindow;
       function initMap() {
         map = new google.maps.Map(document.getElementById('mapholder'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 18,
+          // center: {lat: -34.397, lng: 150.644}, //No need to locate or declare location on startup
+          zoom: 16,
           mapTypeControl:false,
           disableDefaultUI: true,
           draggable : true

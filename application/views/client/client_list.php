@@ -92,7 +92,7 @@
         <table class="table table-condensed table-hover table-bordered dataTable" id="clientdata" style="width:100%;">
           <thead>
             <tr>
-              <!--<th>Action</th>-->
+              <th>Action</th>
               <th>Client</th>
               <th>Contact Person</th>
               <th>Geolocation</th>
@@ -103,7 +103,7 @@
           </thead>
           <?php foreach($data as $client){?>
             <tr>
-              <!--<td>-</td>-->
+              <td><a href="index.php?edit=<?php echo $client->client_id; ?>" class="edit_btn" ><button type="button" class="btn btn-secondary btn-sm m-b-0-0 waves-effect waves-light" title="View Details"><i class="fa fa-arrow-circle-right"></i></button></a></td>
               <td readonly><?php echo $client->client_name;?></td>
               <td><?php echo $client->client_contactperson;?></td>
               <td id="getaddress"><?php echo $client->latitude;?>,<?php echo $client->longitude;?></td>
