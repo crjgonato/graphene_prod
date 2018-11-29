@@ -1,3 +1,7 @@
+<style type="text/css" media="print">
+  /* Force and set the size of the preview to landscape */
+  @page { size: landscape; }
+</style>
 <style>
   /* Set the size of the div element that contains the map */
   #map {
@@ -8,6 +12,7 @@
     background-color: #f5f5f5;
     color: black;
   }
+  /* hide the google logo and other controls on the map div */
   a[href^="http://maps.google.com/maps"]{display:none !important}
   a[href^="https://maps.google.com/maps"]{display:none !important}
 
@@ -17,6 +22,26 @@
   .gmnoprint div {
       background:none !important;
   }
+  @media print {
+    h4 {
+      display: none !important;
+    }
+    .breadcrumb {
+      display: none !important;
+    }
+    .locaton_checker{
+      display: none !important;
+    }
+    #map {
+     display: none !important;
+    }
+    .add-record-btn {
+      display: none !important;
+    }
+   .printable {
+     display: visible !important;
+    }
+}
 </style>
 <?php
 /* Client Visits view
@@ -27,7 +52,7 @@
   <div class="col-md-4">
     <div class="box box-block bg-white animated fadeInUp">
     
-      <h2><strong>Location</strong> Checker 
+      <h2 class="locaton_checker"><strong>Location</strong> Checker 
         <div class="add-record-btn">
         <a class="nav-link" style="cursor: pointer;" onclick="initMap()" title="Refresh map"> <i class="fa fa-redo-alt"></i> </a>&nbsp;&nbsp;&nbsp;
         <button class="btn btn-sm btn-primary pull-right" id="submit" title="Search address on map" type="submit" disabled>Verify Location</button>
@@ -50,12 +75,10 @@
         });
         var geocoder = new google.maps.Geocoder;
         var infowindow = new google.maps.InfoWindow;
-
         document.getElementById('submit').addEventListener('click', function() {
           geocodeLatLng(geocoder, map, infowindow);
         });
       }
-
       function geocodeLatLng(geocoder, map, infowindow) {
         var input = document.getElementById('spnText').value;
         var latlngStr = input.split(',', 2);
@@ -74,8 +97,7 @@
               window.alert('No results found');
             }
           } else {
-            //window.alert('Geocoder failed due to: ' + status);
-            window.alert('Geocoder failed to load');
+            window.alert('Geocoder failed due to: ' + status);
           }
         });
       }
@@ -87,12 +109,18 @@
   </div>
   <div class="col-md-8">
     <div class="box box-block bg-white animated fadeInUp">
-      <h2><strong>List All</strong> Client Visit</h2>
-      <div class="table-responsive" data-pattern="priority-columns">
+      <h2><strong>List All</strong> Client Visit
+        <div class="add-record-btn">
+          <button class="btn btn-sm btn-primary add-new-form" onclick="window.print()" > <i class="fa fa-print icon"></i> Print All</button>
+          <!-- <input type="button" value="Print" />  -->
+        </div>
+      </h2>
+     
+      <div class="table-responsive printable" data-pattern="priority-columns">
         <table class="table table-condensed table-hover table-bordered dataTable" id="clientdata" style="width:100%;">
           <thead>
             <tr>
-              <th>Action</th>
+              <!-- <th>Action</th> -->
               <th>Client</th>
               <th>Contact Person</th>
               <th>Geolocation</th>
@@ -103,7 +131,7 @@
           </thead>
           <?php foreach($data as $client){?>
             <tr>
-              <td><a href="index.php?edit=<?php echo $client->client_id; ?>" class="edit_btn" ><button type="button" class="btn btn-secondary btn-sm m-b-0-0 waves-effect waves-light" title="View Details"><i class="fa fa-arrow-circle-right"></i></button></a></td>
+              <!-- <td><a href="index.php?edit=<?php echo $client->client_id; ?>" class="edit_btn" ><button type="button" class="btn btn-secondary btn-sm m-b-0-0 waves-effect waves-light" title="View Details"><i class="fa fa-arrow-circle-right"></i></button></a></td> -->
               <td readonly><?php echo $client->client_name;?></td>
               <td><?php echo $client->client_contactperson;?></td>
               <td id="getaddress"><?php echo $client->latitude;?>,<?php echo $client->longitude;?></td>
